@@ -38,10 +38,10 @@ export function Presentation() {
   return (
     <div className="mx-auto mt-8 w-full max-w-5xl font-sans">
       <div className="bg-accent rounded-3xl px-4 py-6 sm:px-8 sm:py-8 md:px-12 md:py-10">
-        <div className="grid grid-cols-1 items-center gap-6 sm:gap-10 md:grid-cols-[minmax(0,320px)_1fr] md:items-start">
+        <div className="grid grid-cols-1 items-center gap-6 sm:gap-10 md:grid-cols-[280px_1fr] md:items-start">
           {/* Image section */}
-          <Tilt max={10} className="relative mx-auto aspect-square w-full max-w-xs md:max-w-none">
-            <div className="ring-background relative h-full w-full overflow-hidden rounded-3xl shadow-xl ring-4">
+          <Tilt max={10} className="relative mx-auto aspect-[4/5] w-full max-w-[280px] self-start md:mx-0">
+            <div className="ring-background relative h-full w-full overflow-hidden rounded-2xl shadow-xl ring-4">
               <motion.div
                 initial={{ scale: 0.92, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -51,9 +51,9 @@ export function Presentation() {
                 <Image
                   src={profile.src}
                   alt={profile.name}
-                  width={500}
-                  height={500}
-                  className="h-full w-full object-cover object-center"
+                  width={560}
+                  height={700}
+                  className="h-full w-full object-cover object-top"
                   onError={(e) => {
                     // Fallback to placeholder if image fails to load
                     const target = e.target as HTMLImageElement;
