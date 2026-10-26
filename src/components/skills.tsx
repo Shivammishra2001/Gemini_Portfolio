@@ -1,150 +1,127 @@
 'use client';
 
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion, type Variants } from 'framer-motion';
-import { Code, Cpu, PenTool, Users, Database, Cloud, Microchip, Brain } from 'lucide-react';
+import { Code, Cpu, Users, Database, Cloud, Microchip, Brain } from 'lucide-react';
 import { getConfig } from '@/lib/config-loader';
+import { Tilt } from '@/components/tilt';
 
 const Skills = () => {
   // Get skills from configuration
   const config = getConfig();
-  
+
   // Transform skills data with icons
   const skillsData = [
     {
       category: 'Programming Languages',
       icon: <Code className="h-5 w-5" />,
       skills: config.skills.programming,
-      color: 'bg-blue-50 text-blue-600 border border-blue-200',
+      color: 'bg-blue-500/10 text-blue-500',
     },
     {
-      category: 'ML/AI Technologies',
+      category: 'AI & Tooling',
       icon: <Brain className="h-5 w-5" />,
       skills: config.skills.ml_ai,
-      color: 'bg-purple-50 text-purple-600 border border-purple-200',
+      color: 'bg-purple-500/10 text-purple-500',
     },
     {
       category: 'Web Development',
       icon: <Cpu className="h-5 w-5" />,
       skills: config.skills.web_development,
-      color: 'bg-green-50 text-green-600 border border-green-200',
+      color: 'bg-green-500/10 text-green-500',
     },
     {
       category: 'Databases',
       icon: <Database className="h-5 w-5" />,
       skills: config.skills.databases,
-      color: 'bg-orange-50 text-orange-600 border border-orange-200',
+      color: 'bg-orange-500/10 text-orange-500',
     },
     {
-      category: 'DevOps & Cloud',
+      category: 'Tools & Platforms',
       icon: <Cloud className="h-5 w-5" />,
       skills: config.skills.devops_cloud,
-      color: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
+      color: 'bg-sky-500/10 text-sky-500',
     },
     {
       category: 'IoT & Hardware',
       icon: <Microchip className="h-5 w-5" />,
       skills: config.skills.iot_hardware,
-      color: 'bg-indigo-50 text-indigo-600 border border-indigo-200',
+      color: 'bg-indigo-500/10 text-indigo-500',
     },
     {
-      category: 'Soft Skills',
+      category: 'Practices & Soft Skills',
       icon: <Users className="h-5 w-5" />,
       skills: config.skills.soft_skills,
-      color: 'bg-amber-50 text-amber-600 border border-amber-200',
+      color: 'bg-amber-500/10 text-amber-500',
     },
-  ].filter(category => category.skills && category.skills.length > 0);
+  ].filter((category) => category.skills && category.skills.length > 0);
 
-  // Animation variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
-  const badgeVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.3, ease: 'easeOut' },
-    },
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
   return (
     <motion.div
-      initial={{ scale: 0.98, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-      className="mx-auto w-full max-w-5xl rounded-4xl px-4 sm:px-6"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="mx-auto mt-8 w-full max-w-5xl"
     >
-      <Card className="w-full border-none px-0 pb-8 sm:pb-12 shadow-none">
-        <CardHeader className="px-0 pb-1">
-          <CardTitle className="text-primary px-0 text-2xl sm:text-3xl lg:text-4xl font-bold">
-            Skills & Expertise
-          </CardTitle>
-        </CardHeader>
+      <div className="bg-accent w-full rounded-3xl px-4 py-6 font-sans sm:px-8 sm:py-8 md:px-12 md:py-10">
+        <div className="mb-6">
+          <h2 className="text-foreground text-2xl font-semibold sm:text-3xl md:text-4xl">
+            Skills &amp; Expertise
+          </h2>
+          <p className="text-muted-foreground mt-1 text-sm">
+            What I work with every day.
+          </p>
+        </div>
 
-        <CardContent className="px-0">
-          <motion.div
-            className="space-y-6 sm:space-y-8 px-0"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {skillsData.map((section, index) => (
-              <motion.div
-                key={index}
-                className="space-y-3 px-0"
-                variants={itemVariants}
-              >
-                <div className="flex items-center gap-2">
-                  {section.icon}
-                  <h3 className="text-accent-foreground text-base sm:text-lg font-semibold">
-                    {section.category}
-                  </h3>
-                </div>
-
-                <motion.div
-                  className="flex flex-wrap gap-1.5 sm:gap-2"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
+        <motion.div
+          className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {skillsData.map((section) => (
+            <Tilt
+              key={section.category}
+              variants={itemVariants}
+              max={5}
+              className={`bg-background rounded-2xl border p-4 sm:p-5 ${
+                section.skills.length > 8 ? 'md:col-span-2' : ''
+              }`}
+            >
+              <div className="mb-3 flex items-center gap-3">
+                <span
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${section.color}`}
                 >
-                  {section.skills.map((skill, idx) => (
-                    <motion.div
-                      key={idx}
-                      variants={badgeVariants}
-                      whileHover={{
-                        scale: 1.04,
-                        transition: { duration: 0.2 },
-                      }}
-                    >
-                      <Badge className={`border px-2 py-1 sm:px-3 sm:py-1.5 font-normal text-xs sm:text-sm`}>
-                        {skill}
-                      </Badge>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </CardContent>
-      </Card>
+                  {section.icon}
+                </span>
+                <h3 className="text-foreground text-base font-semibold sm:text-lg">
+                  {section.category}
+                </h3>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {section.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="bg-secondary text-secondary-foreground hover:bg-foreground hover:text-background rounded-full border px-3 py-1 text-xs transition-colors sm:text-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </Tilt>
+          ))}
+        </motion.div>
+      </div>
     </motion.div>
   );
 };

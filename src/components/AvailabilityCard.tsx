@@ -1,48 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CalendarDays, Code2, Globe, Briefcase } from 'lucide-react';
+import { Briefcase, CalendarDays, Code2, Globe, Mail, Sparkles, Target } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { getConfig } from '@/lib/config-loader';
+import { Tilt } from '@/components/tilt';
 
-interface AvailabilityData {
-  availability: string;
-  preferences: {
-    roleTypes: string[];
-    industries: string[];
-    workMode: string;
-    location: string;
-  };
-  experience: {
-    internshipCompleted: string;
-    freelanceWork: string;
-    projectExperience: string;
-  };
-  skills: {
-    technical: string[];
-    soft: string[];
-  };
-  achievements: string[];
-  lookingFor: {
-    growthOpportunities: string;
-    mentorship: string;
-    impactfulWork: string;
-    technicalChallenges: string;
-    collaboration: string;
-  };
-  contact: {
-    email: string;
-    linkedin: string;
-    github: string;
-    portfolio: string;
-  };
-}
-
+// Kept for compatibility with the chat tool result; the card reads from the config.
 interface AvailabilityCardProps {
-  data?: AvailabilityData;
+  data?: unknown;
 }
 
 const AvailabilityCard = ({ data }: AvailabilityCardProps) => {
+  void data;
   const router = useRouter();
   const config = getConfig();
   const experience = config.experience;
@@ -52,159 +22,163 @@ const AvailabilityCard = ({ data }: AvailabilityCardProps) => {
     ...config.skills.databases.slice(0, 2),
     ...config.skills.devops_cloud.slice(0, 3),
   ];
-  const techRows = [
-    techStack.slice(0, Math.ceil(techStack.length / 2)),
-    techStack.slice(Math.ceil(techStack.length / 2)),
-  ];
 
   const handleContactClick = () => {
     // Navigate to home page with the contact preset question
     router.push('/?query=How can I reach you?');
   };
 
+  const tiles = [
+    {
+      label: 'Status',
+      value: 'Open to new opportunities',
+      icon: <Briefcase className="h-5 w-5" />,
+      color: 'bg-green-500/10 text-green-500',
+    },
+    {
+      label: 'Looking for',
+      value: 'Full-time roles & Contract work',
+      icon: <Target className="h-5 w-5" />,
+      color: 'bg-blue-500/10 text-blue-500',
+    },
+    {
+      label: 'Availability',
+      value: 'Full-time roles (currently at ROI Mantra)',
+      icon: <CalendarDays className="h-5 w-5" />,
+      color: 'bg-purple-500/10 text-purple-500',
+    },
+    {
+      label: 'Location',
+      value: `${config.personal.location} · Remote or on-site`,
+      icon: <Globe className="h-5 w-5" />,
+      color: 'bg-rose-500/10 text-rose-500',
+    },
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-accent mx-auto mt-8 w-full max-w-4xl rounded-3xl px-6 py-8 font-sans sm:px-10 md:px-16 md:py-12"
+      className="bg-accent mx-auto mt-8 w-full max-w-4xl rounded-3xl px-4 py-6 font-sans sm:px-8 sm:py-8 md:px-12 md:py-10"
     >
       {/* Header */}
-      <div className="mb-6 flex flex-col items-center sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
         <div className="flex items-center gap-4">
-          {/* Avatar placeholder */}
-          <div className="bg-muted h-16 w-16 overflow-hidden rounded-full shadow-md">
+          <div className="bg-muted ring-background h-16 w-16 shrink-0 overflow-hidden rounded-full shadow-md ring-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/profile.jpeg"
               alt="Shivam's avatar"
-              className="h-full w-full object-cover object-[center_top_-5%] scale-95"
+              className="h-full w-full scale-95 object-cover object-[center_top_-5%]"
             />
           </div>
           <div>
-            <h2 className="text-foreground text-2xl font-semibold">
-              Shivam Mishra
-            </h2>
-            <p className="text-muted-foreground text-sm">
-              Available for Opportunities
-            </p>
+            <h2 className="text-foreground text-2xl font-semibold">{config.personal.name}</h2>
+            <p className="text-muted-foreground text-sm">{config.personal.title}</p>
           </div>
         </div>
 
-        {/* Enhanced Live badge with availability status */}
-        <div className="mt-4 flex flex-col items-center gap-2 sm:mt-0 sm:items-end">
-          <span className="flex items-center gap-1 rounded-full border border-green-500 px-3 py-0.5 text-sm font-medium text-green-500">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
-            </span>
-            Open to Work
+        <span className="bg-background flex items-center gap-2 rounded-full border border-green-500/60 px-4 py-1.5 text-sm font-medium text-green-600">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
           </span>
-          <p className="text-xs text-muted-foreground text-center sm:text-right">
-            Open to full-time roles
+          Open to Work
+        </span>
+      </div>
+
+      {/* Status tiles */}
+      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {tiles.map((tile) => (
+          <Tilt
+            key={tile.label}
+            max={6}
+            className="bg-background flex items-center gap-3 rounded-2xl border p-3 sm:p-4"
+          >
+            <span
+              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${tile.color}`}
+            >
+              {tile.icon}
+            </span>
+            <span className="min-w-0">
+              <span className="text-muted-foreground block text-xs">{tile.label}</span>
+              <span className="text-foreground block text-sm font-medium break-words">
+                {tile.value}
+              </span>
+            </span>
+          </Tilt>
+        ))}
+      </div>
+
+      {/* Tech stack */}
+      <div className="bg-background mt-3 rounded-2xl border p-4 sm:p-5">
+        <div className="mb-3 flex items-center gap-3">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-500">
+            <Code2 className="h-5 w-5" />
+          </span>
+          <h3 className="text-foreground text-base font-semibold">Tech stack</h3>
+        </div>
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+          {techStack.map((skill) => (
+            <span
+              key={skill}
+              className="bg-secondary text-secondary-foreground rounded-full border px-3 py-1 text-xs sm:text-sm"
+            >
+              {skill}
+            </span>
+          ))}
+          <a
+            href="/?query=What%20are%20your%20skills%3F%20Give%20me%20a%20list%20of%20your%20soft%20and%20hard%20skills."
+            className="rounded-full border border-blue-500/40 px-3 py-1 text-xs text-blue-500 hover:bg-blue-500/10 sm:text-sm"
+          >
+            See more →
+          </a>
+        </div>
+      </div>
+
+      {/* What I bring + Goal */}
+      <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+        <div className="bg-background rounded-2xl border p-4 sm:p-5">
+          <div className="mb-3 flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-500">
+              <Sparkles className="h-5 w-5" />
+            </span>
+            <h3 className="text-foreground text-base font-semibold">What I bring</h3>
+          </div>
+          <ul className="text-foreground/90 list-disc space-y-1.5 pl-5 text-sm">
+            {experience[0] && (
+              <li>
+                {experience[0].position} at {experience[0].company} ({experience[0].duration})
+              </li>
+            )}
+            {config.education.achievements.slice(0, 2).map((a) => (
+              <li key={a}>{a}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="bg-background rounded-2xl border p-4 sm:p-5">
+          <div className="mb-3 flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-500/10 text-rose-500">
+              <Target className="h-5 w-5" />
+            </span>
+            <h3 className="text-foreground text-base font-semibold">Goal</h3>
+          </div>
+          <p className="text-foreground/90 text-sm leading-relaxed">
+            {config.internship.goals} I&apos;m a strong problem solver and team player, ready to
+            contribute to collaborative, innovative teams! 🚀
           </p>
         </div>
       </div>
 
-      {/* Availability Highlight Section */}
-      <div className="mb-8 rounded-2xl bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-6 border border-green-200 dark:border-green-800">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center">
-            <Briefcase className="h-4 w-4 text-white" />
-          </div>
-          <h3 className="text-lg font-semibold text-foreground">Current Availability Status</h3>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <p className="text-sm font-medium text-foreground mb-1">Status</p>
-            <p className="text-sm text-green-600 dark:text-green-400 font-semibold">
-              ✅ Open to new opportunities
-            </p>
-          </div>
-          <div>
-            <p className="text-sm font-medium text-foreground mb-1">Looking for</p>
-            <p className="text-sm text-blue-600 dark:text-blue-400 font-semibold">
-              Full-time roles & Contract work
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Internship Info */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div className="flex items-start gap-3">
-          <CalendarDays className="mt-1 h-5 w-5 text-blue-500" />
-          <div>
-            <p className="text-foreground text-sm font-medium">Duration</p>
-            <p className="text-muted-foreground text-sm">
-              Full-time roles (currently at ROI Mantra)
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-3">
-          <Globe className="mt-1 h-5 w-5 text-green-500" />
-          <div>
-            <p className="text-foreground text-sm font-medium">Location</p>
-            <p className="text-muted-foreground text-sm">
-              {config.personal.location} · Remote or on-site 🇮🇳
-            </p>
-          </div>
-        </div>
-
-        {/* Tech stack */}
-        <div className="flex items-start gap-3 sm:col-span-2">
-          <Code2 className="mt-1 h-5 w-5 text-purple-500" />
-          <div className="w-full">
-            <p className="text-foreground text-sm font-medium">Tech stack</p>
-            <div className="text-muted-foreground grid grid-cols-1 gap-y-1 text-sm sm:grid-cols-2">
-              <ul className="decoration-none list-disc pl-4">
-                {techRows[0].map((skill) => (
-                  <li key={skill}>{skill}</li>
-                ))}
-              </ul>
-              <ul className="list-disc pl-4">
-                {techRows[1].map((skill) => (
-                  <li key={skill}>{skill}</li>
-                ))}
-                <li>
-                  <a
-                    href="/?query=What%20are%20your%20skills%3F%20Give%20me%20a%20list%20of%20your%20soft%20and%20hard%20skills."
-                    className="cursor-pointer items-center text-blue-500 underline"
-                  >
-                    See more
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* What I bring */}
-      <div className="mt-10">
-        <p className="text-foreground mb-2 text-lg font-semibold">
-          What I bring
-        </p>
-        <p className="text-foreground text-sm">
-          {experience[0] && `${experience[0].position} at ${experience[0].company} (${experience[0].duration}).`} <br />
-          {config.education.achievements[0]} <br />
-          {config.education.achievements[1]}
-        </p>
-      </div>
-
-      {/* Goal */}
-      <div className="mt-8">
-        <p className="text-foreground mb-2 text-lg font-semibold">Goal</p>
-        <p className="text-foreground text-sm">
-          {config.internship.goals} I'm a strong problem solver and team player, ready to contribute to collaborative, innovative teams! 🚀
-        </p>
-      </div>
-
       {/* Contact button */}
-      <div className="mt-10 flex justify-center">
+      <div className="mt-6 flex justify-center">
         <button
           onClick={handleContactClick}
-          className="cursor-pointer rounded-full bg-black px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-zinc-800"
+          className="bg-foreground text-background hover:bg-foreground/85 flex cursor-pointer items-center gap-2 rounded-full px-6 py-3 font-semibold transition-colors duration-300"
         >
+          <Mail className="h-4 w-4" />
           Contact me
         </button>
       </div>

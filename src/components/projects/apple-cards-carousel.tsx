@@ -1,4 +1,5 @@
 'use client';
+import { useTilt } from '@/components/tilt';
 import { useOutsideClick } from '@/hooks/use-outside-click';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -79,8 +80,8 @@ export const Carousel = ({
 
   // Get the card width and gap based on viewport size
   const getScrollDistance = () => {
-    // Card width (w-80 = 320px) + gap-4 (16px)
-    const cardWidth = 320;
+    // Card width (w-72 = 288px below sm, w-80 = 320px from sm) + gap-4 (16px)
+    const cardWidth = window.innerWidth < 640 ? 288 : 320;
     const gap = 16;
     const totalWidth = cardWidth + gap;
 
@@ -109,7 +110,7 @@ export const Carousel = ({
 
   const handleCardClose = (index: number) => {
     if (carouselRef.current) {
-      const cardWidth = 320; // w-80 (320px)
+      const cardWidth = window.innerWidth < 640 ? 288 : 320;
       const gap = isMobile() ? 16 : 16; // gap-4 (16px)
       const scrollPosition = (cardWidth + gap) * index;
       carouselRef.current.scrollTo({
@@ -169,7 +170,7 @@ export const Carousel = ({
             ))}
           </div>
         </div>
-        <div className="mr-10 flex justify-end gap-2 md:mr-20">
+        <div className="mr-4 flex justify-end gap-2 sm:mr-10 md:mr-20">
           <button
             className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
             onClick={scrollLeft}
@@ -202,6 +203,7 @@ export const Card = ({
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const tilt = useTilt(8);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -236,7 +238,7 @@ export const Card = ({
     <>
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 z-52 h-screen overflow-auto">
+          <div className="fixed inset-0 z-52 h-screen overflow-auto px-2 sm:px-4">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -249,10 +251,10 @@ export const Card = ({
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="relative z-[60] mx-auto my-10 h-fit max-w-5xl rounded-3xl bg-white font-sans dark:bg-neutral-900"
+              className="relative z-[60] mx-auto my-4 h-fit max-w-5xl sm:my-10 rounded-3xl bg-white font-sans dark:bg-neutral-900"
             >
               {/* Sticky close button */}
-              <div className="sticky top-4 z-52 flex justify-end px-8 pt-8 md:px-14 md:pt-8">
+              <div className="sticky top-4 z-52 flex justify-end px-5 pt-5 sm:px-8 sm:pt-8 md:px-14 md:pt-8">
                 <button
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-black/90 shadow-md dark:bg-white/90"
                   onClick={handleClose}
@@ -262,7 +264,7 @@ export const Card = ({
               </div>
 
               {/* Header section with consistent padding */}
-              <div className="relative px-8 pt-2 pb-0 md:px-14">
+              <div className="relative px-5 pt-2 pb-0 sm:px-8 md:px-14">
                 <div>
                   <motion.p
                     layoutId={layout ? `category-${card.title}` : undefined}
@@ -272,7 +274,7 @@ export const Card = ({
                   </motion.p>
                   <motion.p
                     layoutId={layout ? `title-${card.title}` : undefined}
-                    className="mt-4 text-2xl font-semibold text-neutral-700 md:text-5xl dark:text-white"
+                    className="mt-3 text-2xl font-semibold break-words text-neutral-700 sm:mt-4 md:text-5xl dark:text-white"
                   >
                     {card.title}
                   </motion.p>
@@ -280,7 +282,7 @@ export const Card = ({
               </div>
 
               {/* Content with consistent padding */}
-              <div className="px-8 pt-8 pb-14 md:px-14">{card.content}</div>
+              <div className="px-5 pt-6 pb-10 sm:px-8 sm:pt-8 sm:pb-14 md:px-14">{card.content}</div>
             </motion.div>
           </div>
         )}
@@ -288,7 +290,10 @@ export const Card = ({
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="relative z-10 flex min-h-48 w-80 flex-col items-start justify-between overflow-hidden rounded-3xl bg-gray-100 dark:bg-neutral-900"
+        style={tilt.style}
+        onMouseMove={tilt.onMouseMove}
+        onMouseLeave={tilt.onMouseLeave}
+        className="relative z-10 flex min-h-48 w-72 flex-col sm:w-80 items-start justify-between overflow-hidden rounded-3xl bg-gray-100 dark:bg-neutral-900"
       >
         <div className="absolute inset-x-0 top-0 z-30 h-full cursor-pointer bg-gradient-to-b from-black hover:scale-110 via-transparent to-transparent" />
         {/*<div className="absolute inset-0 z-20 cursor-pointer bg-black/20 hover:bg-black/2" />*/}

@@ -1,83 +1,76 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownToLine, Download, Eye, File, ExternalLink } from 'lucide-react';
-import Image from 'next/image';
+import { Download, ExternalLink, FileText } from 'lucide-react';
 import { resumeDetails } from '@/lib/config-loader';
 
 export function Resume() {
   // Resume details loaded from configuration
 
-  const handleDownload = () => {
-    // For external URLs, open in a new tab
+  const handleOpen = () => {
     window.open(resumeDetails.downloadUrl, '_blank');
   };
 
+  const meta = [
+    resumeDetails.fileType,
+    resumeDetails.lastUpdated && `Updated ${resumeDetails.lastUpdated}`,
+    resumeDetails.fileSize,
+  ].filter(Boolean);
+
   return (
-    <div className="mx-auto w-full py-8 font-sans">
-      {/* Resume Card */}
-      <motion.div
-        className="group relative overflow-hidden rounded-xl bg-accent p-0 transition-all duration-300 mb-4"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.0, ease: 'easeOut' }}
-      >
-        {/* Details area */}
-        <div className="p-5">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-lg font-medium text-foreground">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="mx-auto mt-8 w-full font-sans"
+    >
+      <div className="bg-accent w-full rounded-3xl px-4 py-5 sm:px-8 sm:py-8">
+        {/* Header */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-orange-500/10 text-orange-500">
+              <FileText className="h-6 w-6" />
+            </span>
+            <div className="min-w-0">
+              <h3 className="text-foreground text-lg font-semibold sm:text-xl">
                 {resumeDetails.title}
               </h3>
-              <p className="text-sm text-muted-foreground">
-                {resumeDetails.description}
-              </p>
-              <div className="mt-1 flex text-xs text-muted-foreground">
-                <span>{resumeDetails.fileType}</span>
-                <span className="mx-2">•</span>
-                <span>Updated {resumeDetails.lastUpdated}</span>
-                <span className="mx-2">•</span>
-                <span>{resumeDetails.fileSize}</span>
+              <p className="text-muted-foreground text-sm">{resumeDetails.description}</p>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {meta.map((m) => (
+                  <span
+                    key={m as string}
+                    className="bg-background text-muted-foreground rounded-full border px-2.5 py-0.5 text-xs"
+                  >
+                    {m}
+                  </span>
+                ))}
               </div>
             </div>
+          </div>
 
-            {/* Download button */}
-            <motion.button
-              onClick={handleDownload}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white hover:bg-black/80 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              title="Download PDF"
+          <div className="flex gap-2 sm:shrink-0">
+            <button
+              onClick={handleOpen}
+              className="bg-background text-foreground hover:bg-background/70 flex flex-1 items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors sm:flex-none"
             >
-              <Download className="h-5 w-5" />
-            </motion.button>
+              <ExternalLink className="h-4 w-4" />
+              Open
+            </button>
+            <a
+              href={resumeDetails.downloadUrl}
+              download
+              className="bg-foreground text-background hover:bg-foreground/85 flex flex-1 items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition-colors sm:flex-none"
+            >
+              <Download className="h-4 w-4" />
+              Download
+            </a>
           </div>
         </div>
-      </motion.div>
 
-      {/* PDF Preview - Always Visible */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
-        className="w-full rounded-xl overflow-hidden border bg-white shadow-lg"
-      >
-        <div className="bg-gray-100 px-4 py-2 flex items-center justify-between border-b">
-          <div className="flex items-center gap-2">
-            <File className="h-4 w-4 text-gray-600" />
-            <span className="text-sm font-medium text-gray-700">Resume Preview</span>
-          </div>
-          <button
-            onClick={handleDownload}
-            className="flex items-center gap-1 px-3 py-1 text-xs bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-          >
-            <ExternalLink className="h-3 w-3" />
-            Open Full
-          </button>
-        </div>
-        
-        <div className="w-full h-[600px] bg-gray-50">
+        {/* PDF Preview */}
+        <div className="bg-background mt-5 h-[420px] w-full overflow-hidden rounded-2xl border sm:h-[600px]">
           <iframe
             src={resumeDetails.downloadUrl}
             width="100%"
@@ -86,8 +79,8 @@ export function Resume() {
             title="Resume Preview"
           />
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 
