@@ -1,0 +1,429 @@
+{
+  "personal": {
+    "name": "Shivam Mishra",
+    "age": 0,
+    "location": "Noida, Uttar Pradesh, India",
+    "title": "Full Stack Software Engineer",
+    "email": "shivammihsra542001@gmail.com",
+    "phone": "+91 7071461937",
+    "handle": "@Shivammishra2001",
+    "bio": "Hey 👋\nI'm Shivam, a Full Stack Software Engineer with 3+ years of experience engineering secure, scalable enterprise systems using .NET Core, C#, ASP.NET Web API, SQL Server and Strapi CMS. I pair frontend UI engineering with microservices and API design, scaled a live retail SaaS to 100+ active business users, and ship fast with AI-assisted development workflows using Claude CLI.",
+    "avatar": "/profile.jpeg",
+    "fallbackAvatar": "/placeholder.jpg"
+  },
+  "education": {
+    "current": {
+      "degree": "Bachelor of Technology in Computer Science",
+      "institution": "Millennium Institute of Technology and Science, Bhopal",
+      "duration": "2024 - Present",
+      "cgpa": "N/A",
+      "graduationDate": "In progress"
+    },
+    "previous": {
+      "degree": "Diploma in Computer Science (Information Technology)",
+      "institution": "Feroze Gandhi Polytechnic, Raebareli",
+      "duration": "2020 - 2023",
+      "percentage": "N/A",
+      "completionDate": "2023"
+    },
+    "achievements": [
+      "Scaled Dukaan-Core, a multi-tenant retail SaaS, to 100+ live stores and business users",
+      "Sustained 99.9% uptime on the Artemis Hospital Management System",
+      "Built enterprise platforms for Varun Beverages (Zambia and India)",
+      "Resolved 50+ bugs during the Techpile Technology development internship"
+    ]
+  },
+  "experience": [
+    {
+      "company": "ROI Mantra",
+      "position": "Software Engineer (Full Stack Developer)",
+      "type": "Full-time",
+      "duration": "Nov 2025 - Present",
+      "description": "Engineered the Artemis Hospital Management System (99.9% uptime, sub-second response times), architected a decoupled headless CMS with Strapi that cut marketing publishing from days to minutes, improved page load speeds by 40%, and built the UniMarket Research Analytics Portal.",
+      "technologies": [
+        ".NET Core",
+        "C#",
+        "ASP.NET Web API",
+        "SQL Server",
+        "Strapi",
+        "React.js",
+        "Bootstrap"
+      ]
+    },
+    {
+      "company": "Saitec International",
+      "position": "Dot Net Developer",
+      "type": "Full-time",
+      "duration": "Dec 2023 - Oct 2025",
+      "description": "Built mission-critical backend endpoints and automated background tasks for Varun Beverages Zambia, real-time logistics tracking for the Freight Management platform, a role-based dealer rewards engine for Ajay Pipes, and maintained enterprise interfaces for VBL India.",
+      "technologies": [
+        ".NET Core",
+        "SQL Server",
+        "Entity Framework Core",
+        "Hangfire Scheduler",
+        "jQuery",
+        "Bootstrap",
+        "REST APIs"
+      ]
+    },
+    {
+      "company": "Techpile Technology Pvt Ltd",
+      "position": "Software Development Intern",
+      "type": "Internship",
+      "duration": "Mar 2023 - Nov 2023",
+      "description": "Completed intensive production training on live ASP.NET MVC code, resolved 50+ bugs and delivered responsive student portal modules for the Student Management & Assessment System.",
+      "technologies": [
+        "ASP.NET MVC",
+        "C#",
+        "SQL Server",
+        "HTML5",
+        "CSS3",
+        "Bootstrap"
+      ]
+    }
+  ],
+  "skills": {
+    "programming": [
+      "C#",
+      "JavaScript (ES6+)",
+      "SQL",
+      "HTML5",
+      "CSS3"
+    ],
+    "ml_ai": [
+      "Claude CLI",
+      "AI-Assisted Engineering Workflows"
+    ],
+    "web_development": [
+      ".NET Core",
+      "ASP.NET Web API",
+      "ASP.NET MVC",
+      "Entity Framework Core",
+      "ADO.NET",
+      "RESTful Microservices",
+      "Hangfire Scheduler",
+      "JWT",
+      "RBAC",
+      "React.js",
+      "Strapi (Headless CMS)",
+      "Bootstrap",
+      "Tailwind CSS",
+      "jQuery",
+      "AJAX",
+      "Responsive Web Design"
+    ],
+    "databases": [
+      "SQL Server",
+      "PostgreSQL",
+      "Stored Procedures",
+      "Advanced Indexing",
+      "Query Optimization",
+      "Database Migrations"
+    ],
+    "devops_cloud": [
+      "Git",
+      "GitHub",
+      "Render",
+      "Vercel",
+      "Visual Studio",
+      "VS Code",
+      "Postman",
+      "Swagger"
+    ],
+    "iot_hardware": [],
+    "soft_skills": [
+      "Agile/Scrum",
+      "Problem Solving",
+      "Team Player",
+      "Debugging",
+      "Unit Testing",
+      "OOP",
+      "MVC Architecture",
+      "API Integration"
+    ]
+  },
+  "certifications": [],
+  "projects": [
+    {
+      "title": "Dukaan-Core",
+      "category": "Multi-Tenant Retail POS & SaaS",
+      "description": "Multi-tenant retail POS and store management SaaS scaled to 100+ live stores and business users. Real-time POS billing with sub-second invoice generation, automated barcode inventory synchronization, transactional ledger tracking, multi-tier RBAC (Store Owner, Cashier, Admin), and automated daily sales audit reporting at 99.9% availability.",
+      "techStack": [
+        "Strapi",
+        "PostgreSQL",
+        "React.js",
+        "HTML5",
+        "CSS3",
+        "Bootstrap"
+      ],
+      "date": "2025-Present",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "Live Site",
+          "url": "https://dukaan-core.vercel.app/"
+        }
+      ],
+      "images": []
+    },
+    {
+      "title": "Artemis Hospital Management System",
+      "category": "Healthcare Web Application",
+      "description": "Clinical and administrative workflow modules sustaining 99.9% uptime across patient workflows and heavy daily records, with secure data governance and tuned relational queries for sub-second response times.",
+      "techStack": [
+        ".NET Core",
+        "C#",
+        "ASP.NET Web API",
+        "SQL Server"
+      ],
+      "date": "2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "Live Site",
+          "url": "https://www.artemishospitals.com/"
+        }
+      ],
+      "images": []
+    },
+    {
+      "title": "ROI Mantra Corporate Digital Platform",
+      "category": "Corporate Website / CMS",
+      "description": "End-to-end decoupled headless CMS with Strapi that cut marketing publishing turnaround from days to minutes, with responsive frontend components that improved page load speeds by 40%.",
+      "techStack": [
+        "Strapi",
+        "React.js",
+        "HTML5",
+        "CSS3",
+        "Bootstrap"
+      ],
+      "date": "2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "Live Site",
+          "url": "https://roimantra.com/"
+        }
+      ],
+      "images": []
+    },
+    {
+      "title": "UniMarket Research Analytics Portal",
+      "category": "Analytics Portal",
+      "description": "Interactive analytics portal with modular UI components enabling instant visual rendering of multi-variable market research datasets.",
+      "techStack": [
+        "Strapi CMS",
+        "REST APIs",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Bootstrap"
+      ],
+      "date": "2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "Live Site",
+          "url": "https://unimrkt-frontend.vercel.app/blog"
+        }
+      ],
+      "images": []
+    },
+    {
+      "title": "VBZL (Varun Beverages Zambia)",
+      "category": "Enterprise Web Application",
+      "description": "Mission-critical backend endpoints and automated background tasks powering enterprise bottling and distribution operations.",
+      "techStack": [
+        ".NET Core",
+        "SQL Server",
+        "Hangfire Scheduler",
+        "Bootstrap"
+      ],
+      "date": "2024-2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [],
+      "images": []
+    },
+    {
+      "title": "Freight Management Web Platform",
+      "category": "Logistics Web Application",
+      "description": "Real-time logistics and dispatch tracking modules that reduced shipment query response times.",
+      "techStack": [
+        ".NET Core",
+        "JavaScript",
+        "SQL Server",
+        "HTML5",
+        "CSS3",
+        "Bootstrap"
+      ],
+      "date": "2024-2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [],
+      "images": []
+    },
+    {
+      "title": "Ajay Pipes Management Portal",
+      "category": "Web Application",
+      "description": "Role-based dealer points and reward engine ensuring reliable transactional record tracking.",
+      "techStack": [
+        ".NET Core",
+        "SQL Server",
+        "Entity Framework Core",
+        "jQuery",
+        "Bootstrap"
+      ],
+      "date": "2024-2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [],
+      "images": []
+    },
+    {
+      "title": "VBL India (Varun Beverages India)",
+      "category": "Enterprise Web Application",
+      "description": "Maintained enterprise interfaces and database CRUD operations to streamline administrative workflows.",
+      "techStack": [
+        ".NET Core",
+        "REST APIs",
+        "SQL Server"
+      ],
+      "date": "2024-2025",
+      "status": "Completed",
+      "featured": true,
+      "links": [],
+      "images": []
+    },
+    {
+      "title": "Student Management & Assessment System",
+      "category": "Web Application",
+      "description": "Responsive student portal modules built on live ASP.NET MVC code; resolved 50+ bugs during intensive production training.",
+      "techStack": [
+        "ASP.NET MVC",
+        "C#",
+        "SQL Server",
+        "HTML5",
+        "CSS3",
+        "Bootstrap"
+      ],
+      "date": "2023",
+      "status": "Completed",
+      "featured": true,
+      "links": [],
+      "images": []
+    }
+  ],
+  "social": {
+    "linkedin": "https://linkedin.com/in/shivam1301",
+    "github": "https://github.com/Shivammishra2001",
+    "twitter": "",
+    "kaggle": "",
+    "leetcode": "",
+    "fiverr": "",
+    "portfolio": ""
+  },
+  "internship": {
+    "seeking": true,
+    "duration": "Full-time",
+    "startDate": "mutually agreed notice period",
+    "preferredLocation": "Remote or On-site",
+    "focusAreas": [
+      "Full-stack Development",
+      ".NET Development",
+      "Backend APIs",
+      "SQL Server",
+      "Headless CMS"
+    ],
+    "availability": "Open to new opportunities",
+    "workStyle": "Ships at high velocity with AI-assisted workflows; strong problem solver and team player.",
+    "goals": "Build secure, scalable enterprise and SaaS products while growing into senior full-stack and architecture responsibilities."
+  },
+  "personality": {
+    "traits": [
+      "motivated",
+      "problem solver",
+      "team player",
+      "detail-oriented"
+    ],
+    "interests": [
+      ".NET",
+      "Full-Stack Development",
+      "SaaS",
+      "REST APIs",
+      "AI-Assisted Engineering"
+    ],
+    "funFacts": [
+      "Scaled a retail SaaS to 100+ live stores",
+      "Ships fast with Claude CLI workflows",
+      "Built enterprise apps for Varun Beverages in Zambia and India"
+    ],
+    "workingStyle": "I engineer secure, scalable systems and ship at high velocity with AI-assisted workflows",
+    "motivation": "Delivering innovative software solutions that drive business success"
+  },
+  "resume": {
+    "title": "Shivam Mishra - Resume",
+    "description": "Full Stack Software Engineer | .NET Core, C#, SQL Server, Strapi, React.js",
+    "fileType": "PDF",
+    "lastUpdated": "October 2026",
+    "fileSize": "",
+    "downloadUrl": "/ShivamMishra.pdf"
+  },
+  "chatbot": {
+    "name": "Shivam",
+    "personality": "professional, friendly, tech-savvy",
+    "tone": "friendly and conversational",
+    "language": "english",
+    "responseStyle": "short and interactive",
+    "useEmojis": true,
+    "topics": [
+      "projects",
+      "skills",
+      "experience",
+      "contact",
+      "education"
+    ]
+  },
+  "presetQuestions": {
+    "me": [
+      "Who are you?",
+      "Tell me about yourself",
+      "What's your background?"
+    ],
+    "professional": [
+      "What are your skills?",
+      "Can I see your resume?",
+      "What's your experience?",
+      "Are you open to new roles?",
+      "What's your educational background?",
+      "Why should I hire you?"
+    ],
+    "projects": [
+      "What projects are you most proud of?",
+      "Tell me about Dukaan-Core",
+      "Tell me about the Artemis Hospital system"
+    ],
+    "achievements": [
+      "What are your major achievements?"
+    ],
+    "contact": [
+      "How can I reach you?",
+      "What's your email?",
+      "Where are you located?"
+    ],
+    "fun": [
+      "What motivates you?",
+      "Tell me something interesting about you"
+    ]
+  },
+  "meta": {
+    "configVersion": "2.0",
+    "lastUpdated": "2026-10-26",
+    "generatedBy": "Shivam Mishra",
+    "description": "Portfolio configuration generated from Shivam Mishra's resume"
+  }
+}
